@@ -1,6 +1,6 @@
 var app = require('ampersand-app');
 var Router = require('ampersand-router');
-var HomePage = require('./pages/home');
+var StartPage = require('./pages/start');
 
 module.exports = Router.extend({
     routes: {
@@ -10,8 +10,7 @@ module.exports = Router.extend({
 
     // ------- ROUTE HANDLERS ---------
     home: function () {
-        app.trigger('page', new HomePage({
-            model: app.me
+        app.trigger('page', new StartPage({
         }));
     },
 

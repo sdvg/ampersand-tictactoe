@@ -30,9 +30,9 @@
         return '<div class="form-group"><label data-hook="label"></label><div data-hook="message-container"><div data-hook="message-text" class="alert alert-danger"></div></div><input class="form-control"/></div>';
     };
 
-    // pages/home.jade compiled template
-    templatizer["pages"]["home"] = function tmpl_pages_home() {
-        return "<h2>Welcome</h2>";
+    // pages/start.jade compiled template
+    templatizer["pages"]["start"] = function tmpl_pages_start() {
+        return '<section class="page-start"><h1>Tic-tac-toe</h1><p>Hello! What are your names?</p><form data-hook="names-form"><fieldset data-hook="field-container"></fieldset><button type="submit" class="btn btn-primary">PLAY</button></form></section>';
     };
 
     return templatizer;

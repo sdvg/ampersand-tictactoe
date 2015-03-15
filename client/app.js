@@ -33,7 +33,11 @@ app.extend({
         this.router.history.navigate(url, {
             trigger: true
         });
-    }
+    },
+
+    // define constants for mark types
+    MARK_NOUGHT: 0,
+    MARK_CROSS: 1
 });
 
 // run it on domReady
