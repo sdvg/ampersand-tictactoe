@@ -17,7 +17,7 @@
 
     // body.jade compiled template
     templatizer["body"] = function tmpl_body() {
-        return '<body><div class="container"><main data-hook="page-container"></main></div></body>';
+        return '<body><div class="container"><h1>Tic-tac-toe</h1><main data-hook="page-container"></main></div></body>';
     };
 
     // head.jade compiled template
@@ -30,9 +30,21 @@
         return '<div class="form-group"><label data-hook="label"></label><div data-hook="message-container"><div data-hook="message-text" class="alert alert-danger"></div></div><input class="form-control"/></div>';
     };
 
+    // pages/play.jade compiled template
+    templatizer["pages"]["play"] = function tmpl_pages_play(locals) {
+        var buf = [];
+        var jade_mixins = {};
+        var jade_interp;
+        var locals_for_with = locals || {};
+        (function(players) {
+            buf.push('<section class="page-play"><a href="/">< Back to start screen</a><p>Players are: ' + jade.escape((jade_interp = players.at(0).name) == null ? "" : jade_interp) + " and " + jade.escape((jade_interp = players.at(1).name) == null ? "" : jade_interp) + "</p></section>");
+        }).call(this, "players" in locals_for_with ? locals_for_with.players : typeof players !== "undefined" ? players : undefined);
+        return buf.join("");
+    };
+
     // pages/start.jade compiled template
     templatizer["pages"]["start"] = function tmpl_pages_start() {
-        return '<section class="page-start"><h1>Tic-tac-toe</h1><p>Hello! What are your names?</p><form data-hook="names-form"><fieldset data-hook="field-container"></fieldset><button type="submit" class="btn btn-primary">PLAY</button></form></section>';
+        return '<section class="page-start"><p>Hello! What are your names?</p><form data-hook="names-form"><fieldset data-hook="field-container"></fieldset><button type="submit" class="btn btn-primary">PLAY</button></form></section>';
     };
 
     return templatizer;

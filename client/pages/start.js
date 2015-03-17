@@ -21,7 +21,8 @@ module.exports = PageView.extend({
                 players.add(new Player({mark: app.MARK_NOUGHT, name: data.player0}));
                 players.add(new Player({mark: app.MARK_CROSS, name: data.player1}));
 
-                console.log(players.toJSON());
+                app.players = players;
+                app.router.redirectTo('play');
             }
         });
     }
