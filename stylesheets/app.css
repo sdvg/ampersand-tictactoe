@@ -1,0 +1,56 @@
+.page-play .gameGrid {
+  position: relative;
+  width: 201px;
+  height: 201px;
+  margin: 60px auto;
+}
+.page-play .gameGrid:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 1px solid #fff;
+  pointer-events: none;
+}
+.page-play .gameGrid .gameRow {
+  height: 67px;
+}
+.page-play .gameGrid .gameRow:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.page-play .gameGrid .gameCell {
+  float: left;
+  width: 67px;
+  height: 100%;
+  border: 1px solid;
+}
+.page-play .gameGrid .gameCell:before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 67px;
+  text-align: center;
+  font-size: 60px;
+}
+.page-play .gameGrid .gameCell.is-nought:before {
+  content: "O";
+  color: #cf000f;
+}
+.page-play .gameGrid .gameCell.is-cross:before {
+  content: "X";
+  color: #4183d7;
+}
+.page-play .gameGrid.active-noughts .gameCell.is-empty:hover:before {
+  content: "O";
+  color: #ff6974;
+  cursor: pointer;
+}
+.page-play .gameGrid.active-crosses .gameCell.is-empty:hover:before {
+  content: "X";
+  color: #bfd5f2;
+  cursor: pointer;
+}

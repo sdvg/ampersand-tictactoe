@@ -1,4 +1,21 @@
 section.page-play
     a(href="/") < Back to start screen
 
-    p Players are: #{players.at(0).name} and #{players.at(1).name}
+    .gameGrid.active-noughts
+        each row in gameGrid
+            .gameRow
+                each field in row
+                    .gameCell.is-empty
+
+
+    table.table.table-bordered
+        thead
+            tr
+                th= player0.name
+                th Draws
+                th= player1.name
+        tbody
+            tr
+                td= player0.score
+                td 0
+                td= player1.score

@@ -1,0 +1,52 @@
+.page-play
+    .gameGrid
+        position: relative
+        width: 201px
+        height: 201px
+        margin: 60px auto
+
+        &:before // hide outer borders
+            content: ""
+            position: absolute
+            top: 0
+            right: 0
+            bottom: 0
+            left: 0
+            border: 1px solid #fff
+            pointer-events: none
+
+        .gameRow
+            height: 67px
+            clearfix()
+
+        .gameCell
+            float: left
+            width: 67px
+            height: 100%
+            border: 1px solid
+
+            &:before
+                display: block
+                width: 100%
+                height: 100%
+                line-height: 67px
+                text-align: center
+                font-size: 60px
+
+            &.is-nought:before
+                content: noughts-content;
+                color: noughts-color
+            &.is-cross:before
+                content: crosses-content;
+                color: crosses-color
+
+        &.active-noughts
+            .gameCell.is-empty:hover:before
+                content: noughts-content;
+                color: lighten(noughts-color, 30)
+                cursor: pointer
+        &.active-crosses
+            .gameCell.is-empty:hover:before
+                content: crosses-content;
+                color: lighten(crosses-color, 30)
+                cursor: pointer

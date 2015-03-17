@@ -36,9 +36,60 @@
         var jade_mixins = {};
         var jade_interp;
         var locals_for_with = locals || {};
-        (function(players) {
-            buf.push('<section class="page-play"><a href="/">< Back to start screen</a><p>Players are: ' + jade.escape((jade_interp = players.at(0).name) == null ? "" : jade_interp) + " and " + jade.escape((jade_interp = players.at(1).name) == null ? "" : jade_interp) + "</p></section>");
-        }).call(this, "players" in locals_for_with ? locals_for_with.players : typeof players !== "undefined" ? players : undefined);
+        (function(gameGrid, player0, player1, undefined) {
+            buf.push('<section class="page-play"><a href="/">< Back to start screen</a><div class="gameGrid active-noughts">');
+            (function() {
+                var $obj = gameGrid;
+                if ("number" == typeof $obj.length) {
+                    for (var $index = 0, $l = $obj.length; $index < $l; $index++) {
+                        var row = $obj[$index];
+                        buf.push('<div class="gameRow">');
+                        (function() {
+                            var $obj = row;
+                            if ("number" == typeof $obj.length) {
+                                for (var $index = 0, $l = $obj.length; $index < $l; $index++) {
+                                    var field = $obj[$index];
+                                    buf.push('<div class="gameCell is-empty"></div>');
+                                }
+                            } else {
+                                var $l = 0;
+                                for (var $index in $obj) {
+                                    $l++;
+                                    var field = $obj[$index];
+                                    buf.push('<div class="gameCell is-empty"></div>');
+                                }
+                            }
+                        }).call(this);
+                        buf.push("</div>");
+                    }
+                } else {
+                    var $l = 0;
+                    for (var $index in $obj) {
+                        $l++;
+                        var row = $obj[$index];
+                        buf.push('<div class="gameRow">');
+                        (function() {
+                            var $obj = row;
+                            if ("number" == typeof $obj.length) {
+                                for (var $index = 0, $l = $obj.length; $index < $l; $index++) {
+                                    var field = $obj[$index];
+                                    buf.push('<div class="gameCell is-empty"></div>');
+                                }
+                            } else {
+                                var $l = 0;
+                                for (var $index in $obj) {
+                                    $l++;
+                                    var field = $obj[$index];
+                                    buf.push('<div class="gameCell is-empty"></div>');
+                                }
+                            }
+                        }).call(this);
+                        buf.push("</div>");
+                    }
+                }
+            }).call(this);
+            buf.push('</div><table class="table table-bordered"><thead><tr><th>' + jade.escape(null == (jade_interp = player0.name) ? "" : jade_interp) + "</th><th>Draws</th><th>" + jade.escape(null == (jade_interp = player1.name) ? "" : jade_interp) + "</th></tr></thead><tbody><tr><td>" + jade.escape(null == (jade_interp = player0.score) ? "" : jade_interp) + "</td><td>0</td><td>" + jade.escape(null == (jade_interp = player1.score) ? "" : jade_interp) + "</td></tr></tbody></table></section>");
+        }).call(this, "gameGrid" in locals_for_with ? locals_for_with.gameGrid : typeof gameGrid !== "undefined" ? gameGrid : undefined, "player0" in locals_for_with ? locals_for_with.player0 : typeof player0 !== "undefined" ? player0 : undefined, "player1" in locals_for_with ? locals_for_with.player1 : typeof player1 !== "undefined" ? player1 : undefined, "undefined" in locals_for_with ? locals_for_with.undefined : typeof undefined !== "undefined" ? undefined : undefined);
         return buf.join("");
     };
 
