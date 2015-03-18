@@ -1,11 +1,11 @@
 section.page-play
     a(href="/") < Back to start screen
 
-    .gameGrid.active-noughts
-        each row in gameGrid
+    #gameGrid.gameGrid.active-nought
+        each row, yPos in gameGrid
             .gameRow
-                each field in row
-                    .gameCell.is-empty
+                each field, xPos in row
+                    .gameCell.is-empty(data-ypos=yPos, data-xpos=xPos)
 
 
     table.table.table-bordered

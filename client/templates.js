@@ -37,26 +37,26 @@
         var jade_interp;
         var locals_for_with = locals || {};
         (function(gameGrid, player0, player1, undefined) {
-            buf.push('<section class="page-play"><a href="/">< Back to start screen</a><div class="gameGrid active-noughts">');
+            buf.push('<section class="page-play"><a href="/">< Back to start screen</a><div id="gameGrid" class="gameGrid active-nought">');
             (function() {
                 var $obj = gameGrid;
                 if ("number" == typeof $obj.length) {
-                    for (var $index = 0, $l = $obj.length; $index < $l; $index++) {
-                        var row = $obj[$index];
+                    for (var yPos = 0, $l = $obj.length; yPos < $l; yPos++) {
+                        var row = $obj[yPos];
                         buf.push('<div class="gameRow">');
                         (function() {
                             var $obj = row;
                             if ("number" == typeof $obj.length) {
-                                for (var $index = 0, $l = $obj.length; $index < $l; $index++) {
-                                    var field = $obj[$index];
-                                    buf.push('<div class="gameCell is-empty"></div>');
+                                for (var xPos = 0, $l = $obj.length; xPos < $l; xPos++) {
+                                    var field = $obj[xPos];
+                                    buf.push("<div" + jade.attr("data-ypos", yPos, true, false) + jade.attr("data-xpos", xPos, true, false) + ' class="gameCell is-empty"></div>');
                                 }
                             } else {
                                 var $l = 0;
-                                for (var $index in $obj) {
+                                for (var xPos in $obj) {
                                     $l++;
-                                    var field = $obj[$index];
-                                    buf.push('<div class="gameCell is-empty"></div>');
+                                    var field = $obj[xPos];
+                                    buf.push("<div" + jade.attr("data-ypos", yPos, true, false) + jade.attr("data-xpos", xPos, true, false) + ' class="gameCell is-empty"></div>');
                                 }
                             }
                         }).call(this);
@@ -64,23 +64,23 @@
                     }
                 } else {
                     var $l = 0;
-                    for (var $index in $obj) {
+                    for (var yPos in $obj) {
                         $l++;
-                        var row = $obj[$index];
+                        var row = $obj[yPos];
                         buf.push('<div class="gameRow">');
                         (function() {
                             var $obj = row;
                             if ("number" == typeof $obj.length) {
-                                for (var $index = 0, $l = $obj.length; $index < $l; $index++) {
-                                    var field = $obj[$index];
-                                    buf.push('<div class="gameCell is-empty"></div>');
+                                for (var xPos = 0, $l = $obj.length; xPos < $l; xPos++) {
+                                    var field = $obj[xPos];
+                                    buf.push("<div" + jade.attr("data-ypos", yPos, true, false) + jade.attr("data-xpos", xPos, true, false) + ' class="gameCell is-empty"></div>');
                                 }
                             } else {
                                 var $l = 0;
-                                for (var $index in $obj) {
+                                for (var xPos in $obj) {
                                     $l++;
-                                    var field = $obj[$index];
-                                    buf.push('<div class="gameCell is-empty"></div>');
+                                    var field = $obj[xPos];
+                                    buf.push("<div" + jade.attr("data-ypos", yPos, true, false) + jade.attr("data-xpos", xPos, true, false) + ' class="gameCell is-empty"></div>');
                                 }
                             }
                         }).call(this);

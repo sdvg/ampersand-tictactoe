@@ -44,12 +44,12 @@
   content: "X";
   color: #4183d7;
 }
-.page-play .gameGrid.active-noughts .gameCell.is-empty:hover:before {
+.page-play .gameGrid.active-nought .gameCell.is-empty:hover:before {
   content: "O";
   color: #ff6974;
   cursor: pointer;
 }
-.page-play .gameGrid.active-crosses .gameCell.is-empty:hover:before {
+.page-play .gameGrid.active-cross .gameCell.is-empty:hover:before {
   content: "X";
   color: #bfd5f2;
   cursor: pointer;
