@@ -18,8 +18,8 @@ module.exports = PageView.extend({
             el: this.el,
             submitCallback: function (data) {
                 var players = new PlayerCollection();
-                players.add(new Player({mark: app.MARK_NOUGHT, name: data.player0}));
-                players.add(new Player({mark: app.MARK_CROSS, name: data.player1}));
+                players.add(new Player({mark: app.MARK_NOUGHT, name: data.player0, score: 0}));
+                players.add(new Player({mark: app.MARK_CROSS, name: data.player1, score: 0}));
 
                 app.players = players;
                 app.router.redirectTo('play');

@@ -36,8 +36,8 @@
         var jade_mixins = {};
         var jade_interp;
         var locals_for_with = locals || {};
-        (function(gameGrid, player0, player1, undefined) {
-            buf.push('<section class="page-play"><a href="/">< Back to start screen</a><p data-hook="message" class="alert"></p><div id="gameGrid" class="gameGrid active-nought">');
+        (function(drawCount, gameGrid, player0, player1, undefined) {
+            buf.push('<section class="page-play"><p><a href="/">< Back to start screen</a></p><p data-hook="message" class="alert"></p><div id="gameGrid" class="gameGrid active-nought">');
             (function() {
                 var $obj = gameGrid;
                 if ("number" == typeof $obj.length) {
@@ -88,8 +88,8 @@
                     }
                 }
             }).call(this);
-            buf.push('</div><table class="table table-bordered"><thead><tr><th>' + jade.escape(null == (jade_interp = player0.name) ? "" : jade_interp) + "</th><th>Draws</th><th>" + jade.escape(null == (jade_interp = player1.name) ? "" : jade_interp) + "</th></tr></thead><tbody><tr><td>" + jade.escape(null == (jade_interp = player0.score) ? "" : jade_interp) + "</td><td>0</td><td>" + jade.escape(null == (jade_interp = player1.score) ? "" : jade_interp) + "</td></tr></tbody></table></section>");
-        }).call(this, "gameGrid" in locals_for_with ? locals_for_with.gameGrid : typeof gameGrid !== "undefined" ? gameGrid : undefined, "player0" in locals_for_with ? locals_for_with.player0 : typeof player0 !== "undefined" ? player0 : undefined, "player1" in locals_for_with ? locals_for_with.player1 : typeof player1 !== "undefined" ? player1 : undefined, "undefined" in locals_for_with ? locals_for_with.undefined : typeof undefined !== "undefined" ? undefined : undefined);
+            buf.push('</div><p class="text-center"><button id="newGame" class="btn btn-primary">New Game</button></p><table class="table table-bordered"><thead><tr><th>' + jade.escape(null == (jade_interp = player0.name) ? "" : jade_interp) + "</th><th>Draws</th><th>" + jade.escape(null == (jade_interp = player1.name) ? "" : jade_interp) + '</th></tr></thead><tbody><tr><td data-hook="score-player0">' + jade.escape(null == (jade_interp = player0.score) ? "" : jade_interp) + '</td><td data-hook="draw-count">' + jade.escape(null == (jade_interp = drawCount) ? "" : jade_interp) + '</td><td data-hook="score-player1">' + jade.escape(null == (jade_interp = player1.score) ? "" : jade_interp) + "</td></tr></tbody></table></section>");
+        }).call(this, "drawCount" in locals_for_with ? locals_for_with.drawCount : typeof drawCount !== "undefined" ? drawCount : undefined, "gameGrid" in locals_for_with ? locals_for_with.gameGrid : typeof gameGrid !== "undefined" ? gameGrid : undefined, "player0" in locals_for_with ? locals_for_with.player0 : typeof player0 !== "undefined" ? player0 : undefined, "player1" in locals_for_with ? locals_for_with.player1 : typeof player1 !== "undefined" ? player1 : undefined, "undefined" in locals_for_with ? locals_for_with.undefined : typeof undefined !== "undefined" ? undefined : undefined);
         return buf.join("");
     };
 

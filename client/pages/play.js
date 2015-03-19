@@ -10,8 +10,11 @@ module.exports = PageView.extend({
     moveCount: 0, //current moves count
 
     render: function () {
+        this.isGameComplete = false;
         this.player0 = app.players.at(0);
         this.player1 = app.players.at(1);
+        this.drawCount = app.drawCount;
+        this.message = app.players.at(this.activePlayer).name + ', it\'s your turn.';
         this.messageClass = 'alert-info';
 
         this.gameGrid = {};
@@ -22,8 +25,6 @@ module.exports = PageView.extend({
             }
         }
 
-        this.message = app.players.at(this.activePlayer).name + ', it\'s your turn.';
-
         this.renderWithTemplate(this);
         this.gameGridElem = this.el.querySelector('#gameGrid');
 
@@ -32,7 +33,8 @@ module.exports = PageView.extend({
 
     props: {
         message: 'string',
-        messageClass: 'string'
+        messageClass: 'string',
+        isGameComplete: 'bool'
     },
 
     bindings: {
@@ -43,14 +45,23 @@ module.exports = PageView.extend({
         messageClass: {
             type: 'class',
             hook: 'message'
+        },
+        isGameComplete: {
+            type: 'toggle',
+            selector: '#newGame'
         }
     },
 
     events: {
-        'click #gameGrid .gameCell.is-empty': 'setMark'
+        'click #gameGrid .gameCell.is-empty': 'setMark',
+        'click #newGame': 'newGame'
     },
 
     setMark: function (evt) {
+        if(this.isGameComplete) {
+            return;
+        }
+
         var markNames = {
             0: 'nought',
             1: 'cross'
@@ -71,7 +82,6 @@ module.exports = PageView.extend({
             this.gameGridElem.classList.add('active-' + markNames[this.activePlayer]);
 
             this.message = app.players.at(this.activePlayer).name + ', it\'s your turn.';
-
         }
     },
 
@@ -132,13 +142,31 @@ module.exports = PageView.extend({
         return false;
     },
 
-    handleWin: function (player) {
-        this.message = app.players.at(this.activePlayer).name + ' wins!';
+    handleWin: function () {
+        var player = app.players.at(this.activePlayer);
+        player.score += 1;
+        this.queryByHook('score-player' + this.activePlayer).innerText = player.score;
+        this.isGameComplete = true;
+
+        this.message = player.name + ' wins!';
         this.messageClass = 'alert-success';
     },
 
     handleDraw: function () {
+        app.drawCount += 1;
+        this.queryByHook('draw-count').innerText = app.drawCount;
+        this.isGameComplete = true;
+
         this.message = 'Draw!';
         this.messageClass = 'alert-info';
+    },
+
+    newGame: function () {
+        //reset
+        this.activePlayer = 0;
+        this.moveCount= 0;
+
+        //re-render game
+        this.render();
     }
 });

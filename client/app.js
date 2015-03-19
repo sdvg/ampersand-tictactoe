@@ -35,6 +35,9 @@ app.extend({
         });
     },
 
+    //count of all draws in the current session
+    drawCount: 0,
+
     // define constants for mark types
     MARK_NOUGHT: 0,
     MARK_CROSS: 1
