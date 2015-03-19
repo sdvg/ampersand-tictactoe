@@ -1,6 +1,6 @@
 # Tic-tac-toe
 
-This app was generated with the [ampersand cli tool](http://ampersandjs.com/learn/quick-start-guide).
+This is an implementation of a two player Tic-tac-toe game using [Ampersand.js](http://ampersandjs.com/).
 
 ## How to run it
 
@@ -8,16 +8,3 @@ This app was generated with the [ampersand cli tool](http://ampersandjs.com/lear
 1. install dependencies: `npm install`
 1. run it: `npm start`
 1. open http://localhost:3000 in a browser
-
-## How it's structured
-
-See docs: http://ampersandjs.com/
-Curated modules: http://tools.ampersandjs.com/
-
-## Credits
-
-Built by folks at [&yet](http://andyet.com).
-
-## Want a deeper understanding?
-
-Get the book: http://humanjavascript.com
