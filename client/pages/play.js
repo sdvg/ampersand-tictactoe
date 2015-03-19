@@ -12,6 +12,7 @@ module.exports = PageView.extend({
     render: function () {
         this.player0 = app.players.at(0);
         this.player1 = app.players.at(1);
+        this.messageClass = 'alert-info';
 
         this.gameGrid = {};
         for(var y = 0; y <= 2; y++) {
@@ -21,10 +22,28 @@ module.exports = PageView.extend({
             }
         }
 
+        this.message = app.players.at(this.activePlayer).name + ', it\'s your turn.';
+
         this.renderWithTemplate(this);
         this.gameGridElem = this.el.querySelector('#gameGrid');
 
         return this;
+    },
+
+    props: {
+        message: 'string',
+        messageClass: 'string'
+    },
+
+    bindings: {
+        message: {
+            type: 'text',
+            hook: 'message'
+        },
+        messageClass: {
+            type: 'class',
+            hook: 'message'
+        }
     },
 
     events: {
@@ -45,12 +64,18 @@ module.exports = PageView.extend({
 
         var targetData = evt.target.dataset;
         this.gameGrid[targetData.ypos][targetData.xpos] = this.activePlayer;
-        this.checkForWinner(targetData.ypos, targetData.xpos);
+        var gameEnds = this.checkForWinner(targetData.ypos, targetData.xpos);
 
-        this.activePlayer = this.activePlayer ? 0 : 1;
-        this.gameGridElem.classList.add('active-' + markNames[this.activePlayer]);
+        if(!gameEnds) {
+            this.activePlayer = this.activePlayer ? 0 : 1;
+            this.gameGridElem.classList.add('active-' + markNames[this.activePlayer]);
+
+            this.message = app.players.at(this.activePlayer).name + ', it\'s your turn.';
+
+        }
     },
 
+    //@return bool gameEnds
     checkForWinner: function (y, x) {
         var size = 3;
         this.moveCount += 1;
@@ -62,7 +87,7 @@ module.exports = PageView.extend({
             }
             if(i === size - 1) {
                 this.handleWin(this.activePlayer);
-                return;
+                return true;
             }
         }
 
@@ -73,7 +98,7 @@ module.exports = PageView.extend({
             }
             if(i === size - 1) {
                 this.handleWin(this.activePlayer);
-                return;
+                return true;
             }
         }
 
@@ -84,7 +109,7 @@ module.exports = PageView.extend({
             }
             if(i === size - 1) {
                 this.handleWin(this.activePlayer);
-                return;
+                return true;
             }
         }
 
@@ -95,20 +120,25 @@ module.exports = PageView.extend({
             }
             if(i === size - 1) {
                 this.handleWin(this.activePlayer);
-                return;
+                return true;
             }
         }
 
         if(this.moveCount === Math.pow(size, 2)) {
             this.handleDraw();
+            return true;
         }
+
+        return false;
     },
 
     handleWin: function (player) {
-        console.log(player, 'WINS');
+        this.message = app.players.at(this.activePlayer).name + ' wins!';
+        this.messageClass = 'alert-success';
     },
 
     handleDraw: function () {
-        console.log('DRAW');
+        this.message = 'Draw!';
+        this.messageClass = 'alert-info';
     }
 });

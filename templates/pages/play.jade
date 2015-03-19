@@ -1,6 +1,8 @@
 section.page-play
     a(href="/") < Back to start screen
 
+    p.alert(data-hook="message")
+
     #gameGrid.gameGrid.active-nought
         each row, yPos in gameGrid
             .gameRow

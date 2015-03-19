@@ -37,7 +37,7 @@
         var jade_interp;
         var locals_for_with = locals || {};
         (function(gameGrid, player0, player1, undefined) {
-            buf.push('<section class="page-play"><a href="/">< Back to start screen</a><div id="gameGrid" class="gameGrid active-nought">');
+            buf.push('<section class="page-play"><a href="/">< Back to start screen</a><p data-hook="message" class="alert"></p><div id="gameGrid" class="gameGrid active-nought">');
             (function() {
                 var $obj = gameGrid;
                 if ("number" == typeof $obj.length) {
